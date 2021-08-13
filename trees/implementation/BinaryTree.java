@@ -55,13 +55,15 @@ public class BinaryTree {
 		if (currentNode == null)
 			return null;
 		if (currentNode.data > value)
-			deleteNodeRecursive(currentNode.leftNode, value);
+			currentNode.leftNode= deleteNodeRecursive(currentNode.leftNode, value);
 		else if (currentNode.data < value)
-			deleteNodeRecursive(currentNode.rightNode, value);
+			currentNode.rightNode= deleteNodeRecursive(currentNode.rightNode, value);
 		else {
-			if (rootNode.rightNode == null && rootNode.leftNode == null)
-				return null;
-			else if (rootNode.leftNode != null) {
+			if (currentNode.rightNode == null && currentNode.leftNode == null) {
+				 currentNode= null;
+				return currentNode;
+			}
+			else if (currentNode.leftNode != null) {
 				currentNode.data = predessor(currentNode.leftNode);
 				currentNode.leftNode = deleteNodeRecursive(currentNode.leftNode, currentNode.data);
 			} else {
@@ -73,16 +75,16 @@ public class BinaryTree {
 	}
 
 	private int predessor(Node current) {
-		while (current.leftNode != null) {
-			current = current.leftNode;
+		while (current.rightNode != null) {
+			current = current.rightNode;
 		}
 		return current.data;
 
 	}
 
 	private int successor(Node current) {
-		while (current.rightNode != null) {
-			current = current.rightNode;
+		while (current.leftNode != null) {
+			current = current.leftNode;
 		}
 		return current.data;
 
@@ -141,7 +143,7 @@ public class BinaryTree {
 		nodes.add(rootNode);
 
 		while (!nodes.isEmpty()) {
-			Node node = nodes.remove();
+			Node node = nodes.poll();
 			System.out.print(node.data + " ");
 			if (node.leftNode != null)
 				nodes.add(node.leftNode);
@@ -151,6 +153,33 @@ public class BinaryTree {
 
 	}
 
+	private int depthOfTree(Node currentNode) {
+		if (currentNode == null)
+			return 0;
+		else {
+			int left = depthOfTree(currentNode.leftNode);
+			int right = depthOfTree(currentNode.rightNode);
+			return Math.max(left, right) +1 ;
+		}
+	}
+
+	public void depth() {
+		System.out.println("\ndepth of tree " + depthOfTree(rootNode));
+	}
 	
+	public void minAndMax() {
+		Node currentNode = rootNode;
+		while(currentNode.leftNode!=null)
+			currentNode=currentNode.leftNode;
+		
+		System.out.println("least value "+ currentNode.data);
+		
+		currentNode=rootNode;
+		
+		while (currentNode.rightNode!=null) {
+			currentNode=currentNode.rightNode;
+		}
+		System.out.println("highest value "+ currentNode.data);
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.graphs.kruskals;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.graphs.kruskals.Kruskals.Edge;;
@@ -24,7 +25,10 @@ public class KruskalsMain {
 		System.out.println("Enter Weight ----> ");
 		input[i].weight=scanner.nextInt();
 		
-		}	
+		}
+		Arrays.sort(input);
+		
+		
 		kruskals.kruskalsImpl(input,edges,vertices);
 
 	}

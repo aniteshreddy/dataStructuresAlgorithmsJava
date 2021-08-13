@@ -36,7 +36,7 @@ public class DijkstrasAlgo {
 			visited[i] = true;
 
 			for (int j = 0; j < size; j++) {
-				if (!visited[j] && values[minVertex] != Integer.MAX_VALUE && graph[minVertex][j] != 0
+				if (!visited[j] && graph[minVertex][j] != 0
 						&& graph[minVertex][j] + values[minVertex] < values[j]) {
 					values[j] = graph[minVertex][j] + values[minVertex];
 					parent[j] = minVertex;

@@ -9,7 +9,7 @@ public class PrimsMain {
 		int vertex = 0;
 		for (int i = 0; i < values.length; i++) {
 			
-			if (visited[i] == false && values[i] < min) {
+			if (!visited[i] && values[i] < min) {
 
 				min = values[i];
 				vertex = i;
@@ -34,7 +34,7 @@ public class PrimsMain {
 			visited[minVertex] = true;
 
 			for (int j = 0; j < v; j++) {
-				if (visited[j] == false && nodes[minVertex][j] != 0 && nodes[minVertex][j] < values[j]) {
+				if (!visited[j] && nodes[minVertex][j] != 0 && nodes[minVertex][j] < values[j]) {
 					values[j] = nodes[minVertex][j];
 					parent[j] = minVertex;
 				}

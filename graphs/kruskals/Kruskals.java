@@ -15,6 +15,11 @@ public class Kruskals {
 		}
 
 		@Override
+		public String toString() {
+			return "Edge [source=" + source + ", destination=" + destination + ", weight=" + weight + "]";
+		}
+
+		@Override
 		public int compareTo(Edge o) {
 			return this.weight - o.weight;
 		}
@@ -23,11 +28,13 @@ public class Kruskals {
 
 	public void kruskalsImpl(Edge[] inputEdges, int edges, int vertices) {
 		int newEdges = 0;
-		Arrays.sort(inputEdges);
+		
 		Edge[] outputEdges = new Edge[vertices - 1];
 		int[] parent = new int[vertices];
 		for (int i = 0; i < vertices; i++)
 			parent[i] = i;
+		
+		
 		for (int i = 0; i < edges; i++) {
 			if (newEdges >= vertices - 1) {
 				break;

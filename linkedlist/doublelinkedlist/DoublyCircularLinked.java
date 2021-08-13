@@ -105,10 +105,10 @@ public class DoublyCircularLinked<T extends Object> implements Comparator<T> {
 
 	void sort() {
 		if (start == null) {
-			return;
+			
 		} else if (start.next == start) {
 			System.out.println(start.data);
-			return;
+			
 		} else {
 			Node current = start;
 			Node index = current.next;
@@ -122,7 +122,6 @@ public class DoublyCircularLinked<T extends Object> implements Comparator<T> {
 					}
 					index = index.next;
 				}while (index != start);
-//				System.out.println(current.data);
 				current = current.next;
 			} while (current != start);
 		}
